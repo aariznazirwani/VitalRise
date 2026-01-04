@@ -8,6 +8,8 @@ class NutritionScreen extends StatefulWidget {
 }
 
 class _NutritionScreenState extends State<NutritionScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final List<Map<String, dynamic>> categories = [
     {"title": "Pregnant", "icon": Icons.pregnant_woman, "factor": 159},
     {"title": "Lactating", "icon": Icons.baby_changing_station, "factor": 159},
@@ -30,10 +32,36 @@ class _NutritionScreenState extends State<NutritionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      endDrawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: const [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.teal),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'About',
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Developer'),
+              subtitle: Text('Ruhan Nabi'),
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: const Text(
-          "Nutrition Screen",
+          "Nutrition Tracker",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.white,
@@ -45,7 +73,9 @@ class _NutritionScreenState extends State<NutritionScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.more_vert, color: Colors.black),
-            onPressed: () {},
+            onPressed: () {
+              _scaffoldKey.currentState?.openEndDrawer();
+            },
           ),
         ],
       ),
@@ -130,7 +160,7 @@ class _NutritionCardState extends State<NutritionCard> {
     double input = double.tryParse(value) ?? 0;
     // Formula: factor * 25 * input
     double result = widget.factor * 25 * input;
-    
+
     setState(() {
       _calculatedValue = result;
     });
@@ -181,7 +211,10 @@ class _NutritionCardState extends State<NutritionCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Nutritional Value", style: TextStyle(fontSize: 14, color: Colors.black87)),
+                  const Text(
+                    "Nutritional Value",
+                    style: TextStyle(fontSize: 14, color: Colors.black87),
+                  ),
                   const SizedBox(height: 10),
                   TextField(
                     controller: _controller,
@@ -191,8 +224,15 @@ class _NutritionCardState extends State<NutritionCard> {
                       hintText: "Enter value",
                       hintStyle: TextStyle(color: Colors.grey[400]),
                       suffixText: "grams",
-                      suffixStyle: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 12),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      suffixStyle: const TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 14,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide(color: Colors.grey.shade300),
@@ -213,16 +253,23 @@ class _NutritionCardState extends State<NutritionCard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Total Grams", style: TextStyle(color: Colors.grey, fontSize: 16)),
+                      const Text(
+                        "Total Grams",
+                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                      ),
                       Text(
                         _calculatedValue.toStringAsFixed(0),
-                        style: const TextStyle(color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          color: Colors.green,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

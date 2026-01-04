@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'nutrition_screen.dart';
 import 'growth_screen.dart';
+import 'update_service.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: HomeScreen(),
-  ));
+  runApp(
+    const MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen()),
+  );
 }
 
 class HomeScreen extends StatefulWidget {
@@ -17,13 +17,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // This triggers the check as soon as the app screen loads
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      UpdateService.checkForUpdates(context);
+    });
+  }
+
   int _currentIndex = 0;
-  
+
   // The two screens we designed
-  final List<Widget> _screens = [
-    const NutritionScreen(),
-    const GrowthScreen(),
-  ];
+  final List<Widget> _screens = [const NutritionScreen(), const GrowthScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (index) => setState(() => _currentIndex = index),
         selectedItemColor: Colors.teal,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.restaurant), label: 'Nutrition'),
-          BottomNavigationBarItem(icon: Icon(Icons.child_care), label: 'Growth'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.restaurant),
+            label: 'Nutrition',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.child_care),
+            label: 'Growth',
+          ),
         ],
       ),
     );
