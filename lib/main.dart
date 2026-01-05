@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'nutrition_screen.dart';
 import 'growth_screen.dart';
+import 'beneficiary_screen.dart';
 import 'update_service.dart';
 
 void main() {
@@ -28,8 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int _currentIndex = 0;
 
-  // The two screens we designed
-  final List<Widget> _screens = [const NutritionScreen(), const GrowthScreen()];
+  // The three screens we designed
+  final List<Widget> _screens = [
+    const NutritionScreen(),
+    const GrowthScreen(),
+    const BeneficiaryScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.child_care),
             label: 'Growth',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: 'Beneficiaries',
           ),
         ],
       ),
