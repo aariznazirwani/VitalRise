@@ -34,26 +34,127 @@ class _NutritionScreenState extends State<NutritionScreen> {
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: const [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.teal),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.only(
+                top: 60,
+                bottom: 20,
+                left: 24,
+                right: 24,
+              ),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.teal.shade700, Colors.teal.shade400],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  CircleAvatar(
+                    radius: 32,
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.local_hospital_rounded,
+                      color: Colors.teal,
+                      size: 36,
+                    ),
+                  ),
+                  SizedBox(height: 16),
                   Text(
-                    'About',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
+                    'VitalRise',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    'Nutrition & Growth Tracker',
+                    style: TextStyle(color: Colors.white70, fontSize: 14),
                   ),
                 ],
               ),
             ),
+            const SizedBox(height: 20),
             ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Developer'),
-              subtitle: Text('Ruhan Nabi'),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 8,
+              ),
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.teal.shade50,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(Icons.person_rounded, color: Colors.teal.shade700),
+              ),
+              title: const Text(
+                'Developer',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              subtitle: const Text(
+                'Ruhan Nabi',
+                style: TextStyle(color: Colors.grey, height: 1.5),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: Divider(height: 1),
+            ),
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 8,
+              ),
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.orange.shade50,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  Icons.info_outline_rounded,
+                  color: Colors.orange.shade700,
+                ),
+              ),
+              title: const Text(
+                'Version',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              subtitle: const Text(
+                '1.0.0',
+                style: TextStyle(color: Colors.grey, height: 1.5),
+              ),
+            ),
+            const Spacer(),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(24),
+              color: Colors.grey.shade50,
+              child: Column(
+                children: [
+                  Text(
+                    'Made with ❤️ for Better Health',
+                    style: TextStyle(
+                      color: Colors.grey.shade500,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '© 2026 VitalRise',
+                    style: TextStyle(color: Colors.grey.shade400, fontSize: 11),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -66,10 +167,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
         ),
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: const Icon(Icons.more_vert, color: Colors.black),

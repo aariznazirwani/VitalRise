@@ -89,12 +89,7 @@ class _BeneficiaryScreenState extends State<BeneficiaryScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
+        automaticallyImplyLeading: false,
         title: const Text(
           'Beneficiary Details',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),

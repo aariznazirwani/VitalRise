@@ -26,7 +26,7 @@ class UpdateService {
         final Map<String, dynamic> data = json.decode(response.body);
         Version latestVersion = Version.parse(data['version']);
         bool isMandatory = data['mandatory'];
-        String url = data['updateUrl'];
+        String url = 'https://github.com/aariznazirwani/VitalRise';
 
         print("Online Version: $latestVersion");
 

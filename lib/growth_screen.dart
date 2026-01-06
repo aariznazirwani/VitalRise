@@ -186,7 +186,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              "Based on WHO growth standards. Consult a pediatrician for accurate medical assessment.",
+              "Based on Poshan Abhiyan Data Mainly for Poshan Tracker",
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
             ),
