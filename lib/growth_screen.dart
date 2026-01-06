@@ -69,7 +69,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
             ),
             const SizedBox(height: 10),
             DropdownButtonFormField<int>(
-              value: selectedAge,
+              initialValue: selectedAge,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
@@ -94,13 +94,11 @@ class _GrowthScreenState extends State<GrowthScreen> {
                   if (months == 0) {
                     label = "$years ${years == 1 ? 'year' : 'years'}";
                   } else {
-                    label = "$years ${years == 1 ? 'year' : 'years'} $months ${months == 1 ? 'month' : 'months'}";
+                    label =
+                        "$years ${years == 1 ? 'year' : 'years'} $months ${months == 1 ? 'month' : 'months'}";
                   }
                 }
-                return DropdownMenuItem<int>(
-                  value: age,
-                  child: Text(label),
-                );
+                return DropdownMenuItem<int>(value: age, child: Text(label));
               }).toList(),
               onChanged: (val) => setState(() => selectedAge = val),
             ),
@@ -127,7 +125,11 @@ class _GrowthScreenState extends State<GrowthScreen> {
                   children: [
                     Text(
                       "Show Results",
-                      style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(width: 10),
                     Icon(Icons.bar_chart, color: Colors.white),
@@ -162,9 +164,23 @@ class _GrowthScreenState extends State<GrowthScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  _buildResultRow("Height", resultHeight, "cm", Icons.swap_vert, Colors.orange.shade100, Colors.orange),
+                  _buildResultRow(
+                    "Height",
+                    resultHeight,
+                    "cm",
+                    Icons.swap_vert,
+                    Colors.orange.shade100,
+                    Colors.orange,
+                  ),
                   const SizedBox(height: 20),
-                  _buildResultRow("Weight", resultWeight, "kg", Icons.monitor_weight, Colors.teal.shade100, Colors.teal),
+                  _buildResultRow(
+                    "Weight",
+                    resultWeight,
+                    "kg",
+                    Icons.monitor_weight,
+                    Colors.teal.shade100,
+                    Colors.teal,
+                  ),
                 ],
               ),
             ),
@@ -188,7 +204,9 @@ class _GrowthScreenState extends State<GrowthScreen> {
         height: 120,
         decoration: BoxDecoration(
           color: selected ? const Color(0xFFEBF2FF) : Colors.white,
-          border: selected ? Border.all(color: const Color(0xFF1E60F8), width: 2) : null,
+          border: selected
+              ? Border.all(color: const Color(0xFF1E60F8), width: 2)
+              : null,
           borderRadius: BorderRadius.circular(15),
           boxShadow: selected
               ? []
@@ -197,7 +215,7 @@ class _GrowthScreenState extends State<GrowthScreen> {
                     color: Colors.grey.withOpacity(0.1),
                     blurRadius: 5,
                     offset: const Offset(0, 2),
-                  )
+                  ),
                 ],
         ),
         child: Stack(
@@ -227,7 +245,11 @@ class _GrowthScreenState extends State<GrowthScreen> {
               const Positioned(
                 top: 10,
                 right: 10,
-                child: Icon(Icons.check_circle, color: Color(0xFF1E60F8), size: 24),
+                child: Icon(
+                  Icons.check_circle,
+                  color: Color(0xFF1E60F8),
+                  size: 24,
+                ),
               ),
           ],
         ),
@@ -235,7 +257,14 @@ class _GrowthScreenState extends State<GrowthScreen> {
     );
   }
 
-  Widget _buildResultRow(String label, String value, String unit, IconData icon, Color bgColor, Color iconColor) {
+  Widget _buildResultRow(
+    String label,
+    String value,
+    String unit,
+    IconData icon,
+    Color bgColor,
+    Color iconColor,
+  ) {
     return Row(
       children: [
         Container(
@@ -248,7 +277,10 @@ class _GrowthScreenState extends State<GrowthScreen> {
           child: Icon(icon, color: iconColor, size: 28),
         ),
         const SizedBox(width: 20),
-        Text(label, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+        Text(
+          label,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+        ),
         const Spacer(),
         Text(
           value,
@@ -257,7 +289,10 @@ class _GrowthScreenState extends State<GrowthScreen> {
         const SizedBox(width: 5),
         Padding(
           padding: const EdgeInsets.only(top: 10),
-          child: Text(unit, style: TextStyle(fontSize: 16, color: Colors.grey.shade600)),
+          child: Text(
+            unit,
+            style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
+          ),
         ),
       ],
     );

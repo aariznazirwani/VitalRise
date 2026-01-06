@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "807655370598",
+    "project_id": "vitalrise-28ba2",
+    "storage_bucket": "vitalrise-28ba2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807655370598:android:d9d5f05092c3aeb1c622a7",
+        "android_client_info": {
+          "package_name": "com.example.nutrition_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWCte6VegUJcMroejuaz2Wx3gx9fP2WDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
